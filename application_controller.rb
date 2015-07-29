@@ -17,6 +17,10 @@ ActiveRecord::Base.establish_connection(
 
 class ApplicationController < Sinatra::Base
 	
+	get '/home' do
+		erb :home
+	end
+	
 	get '/landing' do
 		erb :landing
 	end
