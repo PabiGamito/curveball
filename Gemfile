@@ -9,6 +9,7 @@ gem 'devise'
 gem "rack-ssl-enforcer"
 gem "haml"
 gem 'gravtastic'
+# gem 'font-awesome-less'
 
 
 group :development do
