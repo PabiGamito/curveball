@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Curveball</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/events.css">
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+</head>
+<body>
+	
+<!-- Navigation -->
+<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+  <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
+  <div class="container">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Curveball</a>
+    </div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <ul class="nav navbar-nav">
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if defined?(Devise) %>
+			<% if session[:user]!=nil %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class='caret' id='#menu-caret'></b></a>
+            <ul class="dropdown-menu">
+							<li><a href="/account">Edit Account</a></li>
+              <li><a href="">Do Something</a></li>
+              <li class="divider"></li>
+							<li><a href="/signout">Sign Out</a></li>
+            </ul>
+          </li>
+        <% else %>
+					<li><a href="/">Sign In</a></li>
+					<li><a href="/#">Sign Up</a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  </div><!-- container-collapse -->
+</nav
+	
+<!-- Create New Event	 -->
+	<div class=new_event>
+	<form action="/new_event" method="post"><br>
+		Event Name: <input type="text" name="name"><br>
+		Location: Ub<br>
+		Time: <input type="date">
+	</form>
+	</div>
+	
+
+<!-- Display Events --
+	Events:>
+	
+	
+	<!-- Main Box  -->
+  <!-- Create New Tweet -->
+    <div class="col-sm-12" class="main_box">
+      <div class="notification-box">
+      <!-- TODO: Make it so a lager box opens when you click into the text input form to write your post -->
+        <form action="/new_event" method="post" accept-charset="utf-8">
+          <!-- TODO:!!!!!! @user_id-->
+          <input type="hidden" name="host_id" value="<%=session[:user]%>"><br>
+          <input class="inp-text" type="text" name="tweet" placeholder=""><br>
+					Event Name: <input class="inp-text" type="text" name="name"><br>
+					Location: Ub<br>
+					Time: <input class="inp-text" type="date" name="date"><br>
+          <button class="tweet-btn" type="submit">Create</button>
+        </form>
+      </div>
+
+  <!-- Displays Tweets -->
+      <div class="notification-box">
+					<%@all_events.each do |event|%>
+				   <div class="list">
+          	<img src="" class="avatar">
+          	<div class="content">
+						<%if event.public=1%>
+							<div class="event">
+								<%@host=User.find(event.host_id)%><br>
+								<%=event.name%><br>
+								Hosted by <%=@host.username%><br>
+				<!-- 				Meet at  get location some how with latitude & longitude  -->
+							</div>
+						<%end%>
+					<%end%>
+      </div>
+    </div>>
+
+	
+	
+</body>
