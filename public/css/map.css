@@ -1,0 +1,40 @@
+		#map-canvas {
+        height: 200%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+/*       #panel {
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+ */
+      
+/*       Provide the following styles for both ID and class,
+      where ID represents an actual existing "panel" with
+      JS bound to its name, and the class is just non-map
+      content that may already have a different ID with
+      JS bound to its name. */
+     
+
+      #panel, .panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #panel select, #panel input, .panel select, .panel input {
+        font-size: 15px;
+      }
+
+      #panel select, .panel select {
+        width: 100%;
+      }
+
+      #panel i, .panel i {
+        font-size: 12px;
+      }

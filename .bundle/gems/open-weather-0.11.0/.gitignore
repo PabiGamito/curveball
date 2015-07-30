@@ -1,0 +1,8 @@
+.bundle
+*.gem
+*.db
+*~
+*#
+*.DS_Store
+log/*
+tmp/*
