@@ -42,9 +42,10 @@
     <ul class="nav navbar-nav navbar-right">
     <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="/events"><i class="fa fa-calendar-o"></i> Events</a></li>
+      <li><a href="/new_event"> New Event </a>  </li>
       <%if session[:user]!=nil%>
-      <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a>
+<!--       <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
             <ul class="dropdown-menu">
               <li><a href="#">Use .each</a></li>
               <li class="divider"></li>
@@ -54,7 +55,7 @@
               <li class="divider"></li>
             </ul>
           </li>
-      <li><a href="/events"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+      <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
       <%end%>
 <!--           <li><a href="#">Login</a></li>
           <li><a href="#">Sign Up</a></li> -->
@@ -93,10 +94,10 @@
                 <p class="center">Login or Sign up to Access<br> all Features</p>
               <%end%>
 
-                  <li class="mt">
-                      <a href="index.html">
-                          <i class="fa fa-search"></i>
-                          <span>Browse Events</span>
+<!--                   <li class="mt"> -->
+<!--                       <a href="index.html"> -->
+<!--                           <i class="fa fa-search"></i> -->
+<!--                           <span>Browse Events</span> -->
                       </a>
                   </li>
 
@@ -128,7 +129,7 @@
                             <input type="submit" value="Log in" />
                           </form>
                         </div>
-                        <h5 class="center">OR</h5>
+<!--                         <h5 class="center">OR</h5>
                         <span href="#" class="button" id="toggle-signup">Sign Up</span>
                         <div id="signup">
                           <div id="triangle"></div>
@@ -141,14 +142,15 @@
                             <input type="password" placeholder="Confirm Password" name="pwd2">
                             <input type="submit" value="Sign up" />
                           </form>
-                        </div>
+                        </div> -->
                     <%else%>
-                  		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
+                      <div class="center">
+<!--                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<i class="fa fa-inbox fa-4x"></i>
-                  <h3>Inbox</h3>
+                  <h3>Inbox</h3> -->
                   			</div>
-					  			<p>You have # invitations.</p>
+<!-- 					  			<p>You have # invitations.</p> -->
                   		</div>
 
                   		<div class="col-md-2 col-sm-2 box0">
@@ -168,29 +170,29 @@
                   		</div>
                   		
                   		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-					  			<i class="fa fa-heart fa-4x"></i>
-					  			<h3>Loved</h3>
+<!--                   			<div class="box1"> -->
+<!-- 					  			<i class="fa fa-heart fa-4x"></i> -->
+<!-- 					  			<h3>Loved</h3> -->
                   			</div>
-					  			<p>You have loved # events.</p>
+<!-- 					  			<p>You have loved # events.</p> -->
                   		</div>
 
                       <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
+<!--                         <div class="box1">
                   <i class="fa fa-search fa-4x"></i>
-                  <h3>Search</h3>
+                  <h3>Search</h3> -->
                         </div>
-                  <p>Find event and friends.</p>
+<!--                   <p>Find event and friends.</p> -->
                       </div>
-
+                      </div>
                       <%end%>
                   	
-                  	</div><!-- /row mt -->	
+<!--                   	</div><!-- /row mt	
                   
                       
                       <div class="row mt">
                       <!-- Weather Panel -->
-                      	<div class="col-md-4 col-sm-4 mb">
+<!--                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn donut-chart">
                       			<div class="white-header">
 						  			<h5>WEATHER</h5>
@@ -203,9 +205,9 @@
 								<canvas id="serverstatus01" height="120" width="120"></canvas>
 
 	                      	</div><!--/grey-panel -->
-                      	</div><!-- /col-md-4-->
-                      	
-
+<!--                    </div>/col-md-4  -->
+                    
+<!-- 
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn">
                       			<div class="white-header">
@@ -220,22 +222,22 @@
             		</div>
              	</div><!-- /col-md-4 -->
                       	
-						<div class="col-md-4 mb">
+<!-- 						<div class="col-md-4 mb"> -->
 							<!-- WHITE PANEL - TOP USER -->
-							<div class="white-panel pn">
-								<div class="white-header">
-									<h5>TOP USER</h5>
+<!-- 							<div class="white-panel pn"> -->
+								<div class>
+<!-- 									<h5>TOP USER</h5> -->
 								</div>
-								<p><!-- <img src="" class="img-circle" width="80"> -->IMAGE</p>
-								<p><b>User</b></p>
+<!-- 								<p><img src="" class="img-circle" width="80">IMAGE</p> -->
+<!-- 								<p><b>User</b></p> -->
 								<div class="row">
 									<div class="col-md-6">
-										<p class="small mt">MEMBER SINCE</p>
-										<p>2012</p>
+<!-- 										<p class="small mt">MEMBER SINCE</p> -->
+<!-- 										<p>2012</p> -->
 									</div>
 									<div class="col-md-6">
-										<p class="small mt">EVENTS</p>
-										<p>1 gazillion</p>
+<!-- 										<p class="small mt">EVENTS</p> -->
+<!-- 										<p>1 gazillion</p> -->
 									</div>
 								</div>
 							</div>

@@ -56,7 +56,7 @@
 	
 	
 	<!-- Main Box  -->
-  <!-- Create New Tweet -->
+  <!-- Create New Event -->
     <div class="col-sm-12" class="main_box">
       <div class="notification-box">
       <!-- TODO: Make it so a lager box opens when you click into the text input form to write your post -->
@@ -64,13 +64,18 @@
           <!-- TODO:!!!!!! @user_id-->
           <input type="hidden" name="host_id" value="<%=session[:user]%>"><br>
 					Event Name: <input class="inp-text" type="text" name="name"><br>
+					<select name="cars">
+						<%@all_activities.each do |activity|%>
+						<option value="<%=activity.activity_name%>"><%=activity.activity_name.capitalize%></option>
+						<%end%>
+					</select><br>
 					Location: Ub<br>
 					Time: <input class="inp-text" type="date" name="date"><br>
           <button class="tweet-btn" type="submit">Create</button>
         </form>
       </div>
 
-  <!-- Displays Tweets -->
+  <!-- Displays Events -->
       <div class="notification-box">
 					<%@all_events.each do |event|%>
 				   <div class="list">
@@ -78,10 +83,10 @@
           	<div class="content">
 						<%if event.public=1%>
 							<div class="event">
-								<%@host=User.find(event.host_id)%><br>
+							<%@host=User.find(event.host_id)%><br>
 								<%=event.name%><br>
 								Hosted by <%=@host.username%><br>
-				<!-- 				Meet at  get location some how with latitude & longitude  -->
+	      	Meet at  get location some how with latitude & longitude  
 							</div>
 						<%end%>
 					<%end%>

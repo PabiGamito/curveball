@@ -16,33 +16,31 @@ ActiveRecord::Base.establish_connection(
 
 class ApplicationController < Sinatra::Base
 	
-	get '/home' do
-		erb :home
-	end
-	
-	get '/landing' do
-		erb :landing
-	end
-	
+	use Rack::Session::Cookie, :key => 'rack.session',
+                             :path => '/',
+                             :secret => 'muh_secret'
+  
+# 	add something to make it secret
+		
 	get '/' do
-		if session[:user]==nil
-			erb :landing
-		else
-    	erb :index
-		end
+    puts session[:user]
+    erb :home
   end
   
 	get '/events' do
-    @all_events = Event.all  
+    @all_events = Event.all 
+		@all_activities = Activity.all
     erb :events
   end
 	
 	post '/new_event' do
-		if session[:user]==nil
+		if session[:user]!=nil
 			@event = Event.new({:name => params[:name], :public => params[:public], :host_id => session[:user]})
 			@event.save
 			@all_events = Event.all
+			@all_activities = Activity.all
 		end
+		redirect '/events'
 
 # 		Need to find a way to get an array of invited users
 # 		array.each do |username|
@@ -54,7 +52,6 @@ class ApplicationController < Sinatra::Base
 # # 				return error that username doesn't exist
 # 			end
 # 		end
-		erb :events
 	end
   
 	get "/people" do
@@ -67,22 +64,30 @@ class ApplicationController < Sinatra::Base
   end 
 	
 	post '/signin' do 
-		@user = User.find_by(:username => params[:username])
-		session[:user]=@user.id
-		puts "-------!!!!!!!!!!!!!---------"
-		puts "session[:user]=#{session[:user]}"
-    erb :index
+		@username=params[:username]
+		if User.exists?(:username => @username)
+			@user = User.find_by(:username => @username)
+      session[:user]=@user.id
+			puts "-------!!!!!!!!!!!!!---------"
+			puts "session[:user]=#{session[:user]}"
+		else
+			@user=User.new(:username => @username)
+			@user.save
+      session[:user]=@user.id
+		end
+	redirect '/'
   end
   
-  post '/signup' do 
-    @user = User.create(:username => params{:username})
-    @user.save
-		session[:user]=@user.id
-    erb :index
-	end
+#   post '/signup' do 
+#     @user = User.create(:username => params{:username}, )
+#     @user.save
+# 		session[:user]=@user.id
+# 		erb :home
+# 	end
 	
 	get '/signout' do
 		session[:user]=nil
+		redirect '/'
 	end
 	
 #   get "/new_activity" do
