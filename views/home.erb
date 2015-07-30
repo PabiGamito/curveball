@@ -42,8 +42,8 @@
     <ul class="nav navbar-nav navbar-right">
     <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="/events"><i class="fa fa-calendar-o"></i> Events</a></li>
-
-          <li class="dropdown">
+      <%if session[:user]!=nil%>
+      <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Use .each</a></li>
@@ -54,7 +54,6 @@
               <li class="divider"></li>
             </ul>
           </li>
-      <%if session[:user]!=nil%>
       <li><a href="/events"><i class="fa fa-sign-out"></i> Sign Out</a></li>
       <%end%>
 <!--           <li><a href="#">Login</a></li>
@@ -80,12 +79,18 @@
                   <li class="mt">
                       <a href="index.html">
                           <i class="fa fa-calendar-o"></i>
-                          <span>My Event</span>
+                          <span>My Events</span>
+                      </a>
+                  </li>
+                  <li class="mt">
+                      <a href="index.html">
+                          <i class="fa fa-users"></i>
+                          <span>Friends</span>
                       </a>
                   </li>
 
               <%else%>
-                Please Login or Sign up to Access all Features
+                <p class="center">Login or Sign up to Access<br> all Features</p>
               <%end%>
 
                   <li class="mt">
@@ -107,12 +112,37 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-
               <div class="row">
                   <div class="col-lg-9 main-chart">
                   
                   	<div class="row mtbox">
-                  if user not logged in show signup and sign in buttons
+                    <%if session[:user]==nil%>
+                    <h3 class="center">To Access all Features Please</h3>
+                      <span href="#" class="button" id="toggle-login">Log in</span>
+                        <div id="login">
+                          <div id="triangle"></div>
+                          <h1>Log in</h1>
+                          <form action="/signin" method="post">
+                            <input type="text" placeholder="Username" name="username"/>
+                            <input type="password" placeholder="Password" name="password"/>
+                            <input type="submit" value="Log in" />
+                          </form>
+                        </div>
+                        <h5 class="center">OR</h5>
+                        <span href="#" class="button" id="toggle-signup">Sign Up</span>
+                        <div id="signup">
+                          <div id="triangle"></div>
+                          <h1 >Sign Up</h1>
+                          <form action="/signup" method="post">
+                            <input type="text" placeholder="Full Name" name="name">
+                            <input type="email" placeholder="Email" name="email">
+                            <input type="text" placeholder="Username" name="username"/>
+                            <input type="password" placeholder="Password" name="pwd1"/>
+                            <input type="password" placeholder="Confirm Password" name="pwd2">
+                            <input type="submit" value="Sign up" />
+                          </form>
+                        </div>
+                    <%else%>
                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<i class="fa fa-inbox fa-4x"></i>
@@ -152,12 +182,14 @@
                         </div>
                   <p>Find event and friends.</p>
                       </div>
+
+                      <%end%>
                   	
                   	</div><!-- /row mt -->	
                   
                       
                       <div class="row mt">
-                      <!-- SERVER STATUS PANELS -->
+                      <!-- Weather Panel -->
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn donut-chart">
                       			<div class="white-header">
@@ -222,124 +254,92 @@
 
               <h3>REMEMBER</h3>
                   <!-- Open Scrollable Container -->
-                    <div style="overflow:scroll">                   
-                      <!-- First Action -->
+                    <div style="overflow:scroll; height:200px;">                   
+                      <!-- Action -->
                       <div class="desc">
                         <div class="thumb">
                           <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                         </div>
                         <div class="details">
-                          <p><muted>2 Minutes Ago</muted><br/>
-                             <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Second Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>3 Hours Ago</muted><br/>
-                             <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>7 Hours Ago</muted><br/>
-                             <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fourth Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>11 Hours Ago</muted><br/>
-                             <a href="#">Mark Twain</a> commented your post.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fifth Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>18 Hours Ago</muted><br/>
-                             <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
+                          <p><muted>In 5 hours</muted><br/>
+                             <a href="#">The First Event</a> starts.<br/>
                           </p>
                         </div>
                       </div>
                   
+
+                    <!-- Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>Tomorrow</muted><br/>
+                             This will use <a href="#">.each</a> methods.<br/>
+                          </p>
+                        </div>
+                      </div>
                     </div> <!-- Close scrollable div -->
 
 
 
 						<h3>FEATURED EVENTS</h3>
                   <!-- Open Scrollable Container -->
-                    <div style="overflow:scroll;">                   
+                    <div style="overflow:scroll; height:290px;">                   
                       <!-- First Action -->
                       <div class="desc">
                       	<div class="thumb">
                       		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                       	</div>
                       	<div class="details">
-                      		<p><muted>2 Minutes Ago</muted><br/>
-                      		   <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                      		<p><muted>In a week at <a href="#">New York</a></muted><br/>
+                      		   <a href="#">Bigest Party every</a> will start.<br/>
                       		</p>
                       	</div>
                       </div>
                       <!-- Second Action -->
                       <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>3 Hours Ago</muted><br/>
-                      		   <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
+                             <a href="#">Bigest Party every</a> will start.<br/>
+                          </p>
+                        </div>
                       </div>
                       <!-- Third Action -->
                       <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>7 Hours Ago</muted><br/>
-                      		   <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
+                             <a href="#">Bigest Party every</a> will start.<br/>
+                          </p>
+                        </div>
                       </div>
                       <!-- Fourth Action -->
                       <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>11 Hours Ago</muted><br/>
-                      		   <a href="#">Mark Twain</a> commented your post.<br/>
-                      		</p>
-                      	</div>
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
+                             <a href="#">Bigest Party every</a> will start.<br/>
+                          </p>
+                        </div>
                       </div>
                       <!-- Fifth Action -->
                       <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>18 Hours Ago</muted><br/>
-                      		   <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                      		</p>
-                      	</div>
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
+                             <a href="#">Bigest Party every</a> will start.<br/>
+                          </p>
+                        </div>
                       </div>
                   
                     </div> <!-- Close scrollable div -->
@@ -350,18 +350,26 @@
       </section>
 
       <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2015 - Flatiron
-          </div>
-      </footer>
-      <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+<!-- LOGIN & SIGN UP BUTTON SCRIPT -->
+    <script>
+      $('#login').toggle();
+      $('#signup').toggle();
+
+      $('#toggle-login').click(function(){
+        $('#login').toggle();
+      });
+
+
+      $('#toggle-signup').click(function(){
+        $('#signup').toggle();
+      });
+    </script>
   
 
   </body>
