@@ -1178,7 +1178,7 @@ ul.dropdown-menu li a{
 }
 
 form{
-  background:#f0f0f0;
+  background:#279ddd;
   padding:6% 4%;
 }
 
@@ -1214,6 +1214,10 @@ input[type="submit"]:hover{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+input, select, textarea{
+    color: #000;
 }
 
 

@@ -41,11 +41,12 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/events"><i class="fa fa-calendar-o"></i> Events</a></li>
-      <li><a href="/new_event"> New Event </a>  </li>
+    <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
+      <li><a href="/events"> New Event</a></li>
+  
       <%if session[:user]!=nil%>
-<!--       <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
+      <li class="dropdown">
+<!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
             <ul class="dropdown-menu">
               <li><a href="#">Use .each</a></li>
               <li class="divider"></li>
@@ -77,16 +78,16 @@
               	  <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">User</h5>
               	  	
-                  <li class="mt">
+<!--                   <li class="mt">
                       <a href="index.html">
                           <i class="fa fa-calendar-o"></i>
-                          <span>My Events</span>
+                          <span>My Events</span> -->
                       </a>
                   </li>
-                  <li class="mt">
+<!--                   <li class="mt">
                       <a href="index.html">
                           <i class="fa fa-users"></i>
-                          <span>Friends</span>
+                          <span>Friends</span> -->
                       </a>
                   </li>
 
@@ -94,7 +95,7 @@
                 <p class="center">Login or Sign up to Access<br> all Features</p>
               <%end%>
 
-<!--                   <li class="mt"> -->
+                  <li class="mt">
 <!--                       <a href="index.html"> -->
 <!--                           <i class="fa fa-search"></i> -->
 <!--                           <span>Browse Events</span> -->
@@ -125,74 +126,48 @@
                           <h1>Log in</h1>
                           <form action="/signin" method="post">
                             <input type="text" placeholder="Username" name="username"/>
-                            <input type="password" placeholder="Password" name="password"/>
+<!--                             <input type="password" placeholder="Password" name="password"/> -->
                             <input type="submit" value="Log in" />
                           </form>
                         </div>
-<!--                         <h5 class="center">OR</h5>
-                        <span href="#" class="button" id="toggle-signup">Sign Up</span>
-                        <div id="signup">
-                          <div id="triangle"></div>
-                          <h1 >Sign Up</h1>
-                          <form action="/signup" method="post">
-                            <input type="text" placeholder="Full Name" name="name">
-                            <input type="email" placeholder="Email" name="email">
-                            <input type="text" placeholder="Username" name="username"/>
-                            <input type="password" placeholder="Password" name="pwd1"/>
-                            <input type="password" placeholder="Confirm Password" name="pwd2">
-                            <input type="submit" value="Sign up" />
-                          </form>
-                        </div> -->
+                        
                     <%else%>
-                      <div class="center">
-<!--                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
+                  		<!-- <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<i class="fa fa-inbox fa-4x"></i>
-                  <h3>Inbox</h3> -->
+                  <h3>Inbox</h3>
                   			</div>
-<!-- 					  			<p>You have # invitations.</p> -->
-                  		</div>
+					  			<p>You have # invitations.</p>
+                  		</div> -->
 
                   		<div class="col-md-2 col-sm-2 box0">
+                        <a href = '/disp_events'>
                   			<div class="box1">
 					  			<i class="fa fa-calendar-o fa-4x"></i>
 					  			<h3>Events</h3>
                   			</div>
-					  			<p>You are part of # events.</p>
+					  			<p>You are part of event(s).</p>
+                        </a>
                   		</div>
 
                   		<div class="col-md-2 col-sm-2 box0">
+                         <a href = '/people'>
                   			<div class="box1">
 					  			<i class="fa fa-users fa-4x"></i>
 					  			<h3>Users</h3>
                   			</div>
 					  			<p>Find new friends close to you.</p>
-                  		</div>
-                  		
-                  		<div class="col-md-2 col-sm-2 box0">
-<!--                   			<div class="box1"> -->
-<!-- 					  			<i class="fa fa-heart fa-4x"></i> -->
-<!-- 					  			<h3>Loved</h3> -->
-                  			</div>
-<!-- 					  			<p>You have loved # events.</p> -->
+                        </a>
                   		</div>
 
-                      <div class="col-md-2 col-sm-2 box0">
-<!--                         <div class="box1">
-                  <i class="fa fa-search fa-4x"></i>
-                  <h3>Search</h3> -->
-                        </div>
-<!--                   <p>Find event and friends.</p> -->
-                      </div>
-                      </div>
                       <%end%>
                   	
-<!--                   	</div><!-- /row mt	
+                  	</div><!-- /row mt -->	
                   
-                      
+                      <!-- EVENTS -->
                       <div class="row mt">
                       <!-- Weather Panel -->
-<!--                       	<div class="col-md-4 col-sm-4 mb">
+                      	<!-- <div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn donut-chart">
                       			<div class="white-header">
 						  			<h5>WEATHER</h5>
@@ -204,44 +179,9 @@
 	                      		</div>
 								<canvas id="serverstatus01" height="120" width="120"></canvas>
 
-	                      	</div><!--/grey-panel -->
-<!--                    </div>/col-md-4  -->
-                    
-<!-- 
-                      	<div class="col-md-4 col-sm-4 mb">
-                      		<div class="white-panel pn">
-                      			<div class="white-header">
-						  			<h5>TOP EVENT</h5>
-                      			</div>
-								<div class="row">
-									<div class="col-sm-6 col-xs-6 goleft">
-										<p><i class="fa fa-heart"></i> 122</p>
-									</div>
-									<div class="col-sm-6 col-xs-6"></div>
-	               </div>
-            		</div>
-             	</div><!-- /col-md-4 -->
+	                      	</div> --><!--/grey-panel -->
+                      	<!-- </div> --><!-- /col-md-4-->
                       	
-<!-- 						<div class="col-md-4 mb"> -->
-							<!-- WHITE PANEL - TOP USER -->
-<!-- 							<div class="white-panel pn"> -->
-								<div class>
-<!-- 									<h5>TOP USER</h5> -->
-								</div>
-<!-- 								<p><img src="" class="img-circle" width="80">IMAGE</p> -->
-<!-- 								<p><b>User</b></p> -->
-								<div class="row">
-									<div class="col-md-6">
-<!-- 										<p class="small mt">MEMBER SINCE</p> -->
-<!-- 										<p>2012</p> -->
-									</div>
-									<div class="col-md-6">
-<!-- 										<p class="small mt">EVENTS</p> -->
-<!-- 										<p>1 gazillion</p> -->
-									</div>
-								</div>
-							</div>
-						</div><!-- /col-md-4 -->
           </div><!-- /row -->
         </div><!-- /col-lg-9 END SECTION MIDDLE -->
                   

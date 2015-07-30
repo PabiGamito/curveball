@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Curveball</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>Curveball</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/events.css">
 	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
 <body>
 	
-<!-- Navigation -->
+	<!-- Navigation -->
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
   <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
   <div class="container">
@@ -27,72 +29,60 @@
     <ul class="nav navbar-nav">
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <% if defined?(Devise) %>
-			<% if session[:user]!=nil %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class='caret' id='#menu-caret'></b></a>
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
+      <li><a href="/events"> New Event</a></li>
+  
+      <%if session[:user]!=nil%>
+      <li class="dropdown">
+<!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
             <ul class="dropdown-menu">
-							<li><a href="/account">Edit Account</a></li>
-              <li><a href="">Do Something</a></li>
+              <li><a href="#">Use .each</a></li>
               <li class="divider"></li>
-							<li><a href="/signout">Sign Out</a></li>
+              <li><a href="#">For</a></li>
+              <li class="divider"></li>
+              <li><a href="#">This</a></li>
+              <li class="divider"></li>
             </ul>
           </li>
-        <% else %>
-					<li><a href="/">Sign In</a></li>
-					<li><a href="/#">Sign Up</a></li>
-        <% end %>
-      <% end %>
+      <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+      <%end%>
+<!--           <li><a href="#">Login</a></li>
+          <li><a href="#">Sign Up</a></li> -->
     </ul>
   </div><!-- /.navbar-collapse -->
   </div><!-- container-collapse -->
-</nav
-	
-<!-- Create New Event	 -->
-	
+</nav>
+  
+	<!-- Create New Event -->
 
-<!-- Display Events --
-	Events:>
-	
-	
-	<!-- Main Box  -->
-  <!-- Create New Event -->
-    <div class="col-sm-12" class="main_box">
-      <div class="notification-box">
-      <!-- TODO: Make it so a lager box opens when you click into the text input form to write your post -->
-        <form action="/new_event" method="post" accept-charset="utf-8">
-          <!-- TODO:!!!!!! @user_id-->
-          <input type="hidden" name="host_id" value="<%=session[:user]%>"><br>
-					Event Name: <input class="inp-text" type="text" name="name"><br>
-					<select name="cars">
-						<%@all_activities.each do |activity|%>
-						<option value="<%=activity.activity_name%>"><%=activity.activity_name.capitalize%></option>
-						<%end%>
-					</select><br>
-					Location: Ub<br>
-					Time: <input class="inp-text" type="date" name="date"><br>
-          <button class="tweet-btn" type="submit">Create</button>
-        </form>
-      </div>
+	<h1>New Event</h1>
+	<div class="notification-box">
+		<form action="/new_event" method="post" accept-charset="utf-8">
+			<input type="hidden" name="host_id" value="<%=session[:user]%>"><br>
+			Event Name: <input class="inp-text" type="text" name="name"><br>
+			<select name="activities">
+				<% @all_activities.each do |activity|%>
+				<option value="<%=activity.activity_name%>"><%=activity.activity_name.capitalize%></option>
+				<%end%>
+			</select><br>
 
-  <!-- Displays Events -->
-      <div class="notification-box">
-					<%@all_events.each do |event|%>
-				   <div class="list">
-          	<img src="" class="avatar">
-          	<div class="content">
-						<%if event.public=1%>
-							<div class="event">
-							<%@host=User.find(event.host_id)%><br>
-								<%=event.name%><br>
-								Hosted by <%=@host.username%><br>
-	      	Meet at  get location some how with latitude & longitude  
-							</div>
-						<%end%>
-					<%end%>
-      </div>
-    </div>>
+			Date:
+			<input class="inp-text" type="datetime-local" name="datetime">
 
-	
-	
+			<div id="panel">
+				Location: <input id="address" type="textbox" value="">
+				<input type="button" value="Find" onclick="codeAddress()">
+				<input type="hidden" name="latitude" value="">
+				<input type="hidden" name="longitude" value=""><br>
+				<button class="tweet-btn" type="submit">Create</button><br><br>
+			</div>
+			<div id="map-canvas"></div>
+			<br>
+		</form>
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script src="js/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="js/events.js"></script>
 </body>

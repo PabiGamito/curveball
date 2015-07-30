@@ -26,37 +26,41 @@ class ApplicationController < Sinatra::Base
     puts session[:user]
     erb :home
   end
+	
+	get '/disp_events' do
+    @all_activities = Activity.all
+		@all_events=Event.all
+		erb :disp_events
+	end
   
-	get '/events' do
-    @all_events = Event.all 
-		@all_activities = Activity.all
+  get '/events' do 
+    @all_activities = Activity.all #SPELLING PABLO. :P
     erb :events
-  end
+  end 
 	
 	post '/new_event' do
 		if session[:user]!=nil
-			@event = Event.new({:name => params[:name], :public => params[:public], :host_id => session[:user]})
+			
+			@event = Event.new({:name => params[:name], :public => 1, :host_id => session[:user], :activity_id => params[:activity], :public => params[:public], :latitude => params[:latitude], :longitude => params[:longitude], :event_date => params[:datetime]})
+			
+# 			YourModel.create(:a_time_column => Time.now)
+# 			 const DATETIME_FORMAT = 'php:Y-m-d H:i:s';
 			@event.save
 			@all_events = Event.all
 			@all_activities = Activity.all
 		end
-		redirect '/events'
-
-# 		Need to find a way to get an array of invited users
-# 		array.each do |username|
-# 			if User.exists?(:username => username)
-# 				@user=User.find(:username => username)
-# 				@invitation = Invitation.new({:event_id => @event.id, :user_id => @user.id, :host_id => session[:user]})
-# 				@invitation.save
-# 			else
-# # 				return error that username doesn't exist
-# 			end
-# 		end
+		erb :disp_events
 	end
   
 	get "/people" do
+    @people = User.all
 		erb :people
 	end
+  
+  get '/new_event' do 
+		@all_activities = Activity.all
+    erb :new_event
+  end 
   
   get '/invites' do
     @invitations = Invitation.find_by(:user_id => session[:user])
@@ -65,49 +69,24 @@ class ApplicationController < Sinatra::Base
 	
 	post '/signin' do 
 		@username=params[:username]
-		if User.exists?(:username => @username)
+		if User.exists?(:username => @username) #Make it so you can not create blanc user.
 			@user = User.find_by(:username => @username)
       session[:user]=@user.id
 			puts "-------!!!!!!!!!!!!!---------"
 			puts "session[:user]=#{session[:user]}"
-		else
+		elsif @username.count>=3
 			@user=User.new(:username => @username)
 			@user.save
       session[:user]=@user.id
 		end
 	redirect '/'
   end
-  
-#   post '/signup' do 
-#     @user = User.create(:username => params{:username}, )
-#     @user.save
-# 		session[:user]=@user.id
-# 		erb :home
-# 	end
 	
 	get '/signout' do
 		session[:user]=nil
-		redirect '/'
+		erb :home
 	end
-	
-#   get "/new_activity" do
-#     session[:user]=user.id
-#   end
-  
-#   post '/new_activity' do 
-#     @activity = Activity.find_by(:new_activtiy => params[:username])
-#     @activity.save
-# 		session[:user]=@user.id
-#     erb :index
-#   end
-  
-#   post "/new_activty" do
-#     @activity = Activity.all
-#     @activity = Activity.new({:host_id => params[:user_id]})
-#     @activty.save
-#     erb :index2
-# 	end
-  
+
   
 end
   
