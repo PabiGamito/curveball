@@ -29,22 +29,19 @@ class ApplicationController < Sinatra::Base
 	
 	get '/disp_events' do
     @all_activities = Activity.all
-		@all_events=Event.all
+    @all_events = Event.all
 		erb :disp_events
 	end
   
   get '/events' do 
-    @all_activities = Activity.all #SPELLING PABLO. :P
+    @all_activites = Activity.all
     erb :events
   end 
 	
-	post '/new_event' do
+  post '/events' do
 		if session[:user]!=nil
 			
-			@event = Event.new({:name => params[:name], :public => 1, :host_id => session[:user], :activity_id => params[:activity], :public => params[:public], :latitude => params[:latitude], :longitude => params[:longitude], :event_date => params[:datetime]})
-			
-# 			YourModel.create(:a_time_column => Time.now)
-# 			 const DATETIME_FORMAT = 'php:Y-m-d H:i:s';
+			@event = Event.new({:name => params[:name], :public => params[:public], :host_id => session[:user], :activity_id => params[:activity], :public => params[:public], :latitude => params[:latitude], :longitude => parms[:longitude]})
 			@event.save
 			@all_events = Event.all
 			@all_activities = Activity.all
@@ -87,7 +84,11 @@ class ApplicationController < Sinatra::Base
 		erb :home
 	end
 
-  
+get '/my_events' do
+  @my_events = Event.find_by_all(:host_id => session[:user])
+  erb :my_events 
+end
+
 end
   
 
