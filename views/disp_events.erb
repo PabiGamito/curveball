@@ -136,7 +136,7 @@
                 <% #if event.public==1 %>
                 <div class="event">
                  <%@host=User.find(event.host_id)%><br>
-                 <a href="/event/<%=event.name%>"><b><%=event.name%></b></a>
+									<a href="/event/<%= event.id %>"><b><%=event.name%></b></a>
                  <div class="event-location"> <%=event.latitude%>, <%=event.longitude%></div>
                   
                   <!-- Displays the date in readable format-->
@@ -163,7 +163,7 @@
                     <% #if event.public==1 %>
                     <div class="event">
                       <%@host=User.find(event.host_id)%><br>
-                      <a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
+                      <a href="/event/<%=event.id%>"><b><%=event.name%></b></a><br>
                       <div class="event-location"> <%=event.latitude%>, <%=event.longitude%></div>
                       <br>
                       <!-- Displays the date in readable format-->

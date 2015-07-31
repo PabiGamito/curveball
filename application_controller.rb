@@ -77,15 +77,11 @@ class ApplicationController < Sinatra::Base
 		@all_activities = Activity.all
     erb :new_event
   end 
-  
-  get '/invites' do
-    @invitations = Invitation.find_by(:user_id => session[:user])
-    erb :invites
-  end 
+ 
 	
 	post '/signin' do 
 		@username=params[:username]
-		if User.exists?(:username => @username)#Make it so you can not create blank user.
+		if User.exists?(:username => @username)
 			@user = User.find_by(:username => @username)
       session[:user]=@user.id
 		elsif @username!=""
@@ -107,9 +103,18 @@ get '/my_events' do
   erb :my_events 
 end
 
+get '/event/:id' do
+	@event = Event.find(params[:id])
+	erb :event_page
+end
+
+post '/join' do
+	#Adds user to event.
+end
+
 # REDIRECT ANY UNKOWN LINK TO HOME
   get '*' do
-		"ERROR PAGE NOT FOUND"
+		erb :error404
   end
 
 end
