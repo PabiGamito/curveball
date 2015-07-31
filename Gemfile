@@ -12,7 +12,6 @@ gem 'gravtastic'
 gem 'open-weather'
 gem 'pg'
 gem 'thin'
-gem "tux"
 # gem 'font-awesome-less'
 
 
@@ -21,4 +20,5 @@ group :development do
   gem "shotgun"
   gem "tux"
   gem "sqlite3"
+	gem "tux"
 end
