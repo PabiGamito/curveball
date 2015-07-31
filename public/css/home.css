@@ -1221,3 +1221,8 @@ input, select, textarea{
 }
 
 
+.datetime {
+	width: 180px!important;
+}
+
+

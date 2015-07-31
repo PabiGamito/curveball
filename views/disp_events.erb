@@ -1,201 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 
-    <title>Curveball</title>
+  <title>Curveball</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
-    <link href="css/home.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom styles for this template -->
+  <link href="css/home.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+      <![endif]-->
+    </head>
 
-  <body>
+    <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
-  <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
-  <div class="container">
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Curveball</a>
-    </div>
-<!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
-    <%if session[:user]!=nil%>
-      <li><a href="/events"><i class="fa fa-plus"></i> New Event</a></li>
-      <li class="dropdown">
-<!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
-            <ul class="dropdown-menu">
-              <li><a href="#">Use .each</a></li>
-              <li class="divider"></li>
-              <li><a href="#">For</a></li>
-              <li class="divider"></li>
-              <li><a href="#">This</a></li>
-              <li class="divider"></li>
+      <!-- Navigation -->
+      <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+        <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Curveball</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
             </ul>
-          </li>
-      <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
-      <%else%>
-        <li><a href="/signin"><i class="fa fa-sign-in"></i> Sign In</a></li>
-      <%end%>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
+              <%if session[:user]!=nil%>
+              <li><a href="/events"><i class="fa fa-plus"></i> New Event</a></li>
+              <li class="dropdown">
+                <!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
+                <ul class="dropdown-menu">
+                  <li><a href="#">Use .each</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">For</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">This</a></li>
+                  <li class="divider"></li>
+                </ul>
+              </li>
+              <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+              <%else%>
+              <li><a href="/signin"><i class="fa fa-sign-in"></i> Sign In</a></li>
+              <%end%>
 <!--           <li><a href="#">Login</a></li>
-          <li><a href="#">Sign Up</a></li> -->
-    </ul>
-  </div><!-- /.navbar-collapse -->
-  </div><!-- container-collapse -->
+  <li><a href="#">Sign Up</a></li> -->
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- container-collapse -->
 </nav>
-      
+
       <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              <%if session[:user]!=nil%>
-              	  <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                
-                <h5 class="centered">User</h5>
-              	  	
-                  <li class="mt">
-                      <a href="index.html">
-                          <i class="fa fa-calendar-o"></i>
-                          <span>My Events</span>
-                      </a>
-                  </li>
-                  <li class="mt">
+        <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+            
+            <%if session[:user]!=nil%>
+            <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+            
+            <h5 class="centered"><% @user = User.find(session[:user])%> <%=@user.username%></h5>
+            
+            <li class="mt">
+              <a href="/my_events">
+                <i class="fa fa-calendar-o"></i>
+                <span>My Events</span>
+              </a>
+            </li>
+<!--                   <li class="mt">
                       <a href="index.html">
                           <i class="fa fa-users"></i>
                           <span>Friends</span>
                       </a>
                   </li>
-
-              <%else%>
+                -->
+                <%else%>
                 <p class="center">Login or Sign up to Access<br> all Features</p>
-              <%end%>
+                <%end%>
 
-                  <li class="mt">
-<!--                       <a href="index.html"> -->
-<!--                           <i class="fa fa-search"></i> -->
-<!--                           <span>Browse Events</span> -->
-                      </a>
-                  </li>
+                <li class="mt">
+                  <!--                       <a href="index.html"> -->
+                  <!--                           <i class="fa fa-search"></i> -->
+                  <!--                           <span>Browse Events</span> -->
+                </a>
+              </li>
 
-              </ul>
-              <!-- sidebar menu end-->
+            </ul>
+            <!-- sidebar menu end-->
           </div>
-      </aside>
-      <!--sidebar end-->
-      
+        </aside>
+        <!--sidebar end-->
+        
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">
-						
+        <section class="wrapper">
+          
 
-<!-- TODO: Find a way to do this more efficiently -->
+          <!-- TODO: Find a way to do this more efficiently -->
 
-<!-- Displays Events -->
-    <h1> Events near you:</h1>
-      <div class="notification-box">
-				<div class="list">
-<!-- 					TODO: Sort by soonest to latest & location -->
-					<%@all_events.each do |event|%>
-          <%@date= event.event_date.to_s%>
-          <%@time=Time.parse(@date)%>
-          <!-- Checks that event has not yet passed -->
-          <%if @time.future?%>
-				   <hr>
-          	<img src="" class="avatar">
-          	<div class="content">
-						<% #if event.public==1 %>
-							<div class="event">
-							<%@host=User.find(event.host_id)%><br>
-								<a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
-								<div class="event-location"> <%=event.latitude%>, <%=event.longitude%><div>
-                  <br>
+          <!-- Displays Events -->
+          <h1> Events near you:</h1>
+          <div class="notification-box">
+            <div class="list">
+              <!-- 					TODO: Sort by soonest to latest & location -->
+              <%@all_events.each do |event|%>
+              <%@date= event.event_date.to_s%>
+              <%@time=Time.parse(@date)%>
+              <!-- Checks that event has not yet passed -->
+              <%if @time.future?%>
+              <hr>
+              <img src="" class="avatar">
+              <div class="content">
+                <% #if event.public==1 %>
+                <div class="event">
+                 <%@host=User.find(event.host_id)%><br>
+                 <a href="/event/<%=event.name%>"><b><%=event.name%></b></a>
+                 <div class="event-location"> <%=event.latitude%>, <%=event.longitude%></div>
+                  
                   <!-- Displays the date in readable format-->
-                <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
-								Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
-                    
-						<%end%>
-					<%end%>
-					</div>
-      </div>
-
-        <h1> Passed Events:</h1>
-      <div class="notification-box">
-        <div class="list">
-<!--          TODO: Sort by soonest to latest & location -->
-          <%@all_events.each do |event|%>
-          <%@date= event.event_date.to_s%>
-          <%@time=Time.parse(@date)%>
-          <!-- Checks that event has not yet passed -->
-          <%if @time.past?%>
-           <hr>
-            <img src="" class="avatar">
-            <div class="content">
-            <% #if event.public==1 %>
-              <div class="event">
-              <%@host=User.find(event.host_id)%><br>
-                <a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
-                <div class="event-location"> <%=event.latitude%>, <%=event.longitude%><div>
-                  <br>
-                  <!-- Displays the date in readable format-->
-                <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
-                Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
-                    
-            <%end%>
-          <%end%>
-          </div>
-      </div>
-
-
-    </div>
-				
-				
-      
-                  	</div><!-- /row mt -->	
+                  <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
+                  Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
                   
-                     
-                   
-                    <!-- /row -->
-        </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
-      
+                  <%end%>
+                  <%end%>
+                </div>
+              </div>
 
-      <!--main content end-->
-  </section>
+              <h1> Passed Events:</h1>
+              <div class="notification-box">
+                <div class="list">
+                  <!--          TODO: Sort by soonest to latest & location -->
+                  <%@all_events.each do |event|%>
+                  <%@date= event.event_date.to_s%>
+                  <%@time=Time.parse(@date)%>
+                  <!-- Checks that event has not yet passed -->
+                  <%if @time.past?%>
+                  <hr>
+                  <img src="" class="avatar">
+                  <div class="content">
+                    <% #if event.public==1 %>
+                    <div class="event">
+                      <%@host=User.find(event.host_id)%><br>
+                      <a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
+                      <div class="event-location"> <%=event.latitude%>, <%=event.longitude%></div>
+                      <br>
+                      <!-- Displays the date in readable format-->
+                      <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
+                      Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
+                      
+                      <%end%>
+                      <%end%>
+                    </div>
+                  </div>
 
-<script src="js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/disp_events.js"></script>
-  </body>
-</html>
+
+                </div>
+                
+                
+                
+              </div><!-- /row mt -->	
+              
+              
+              
+              <!-- /row -->
+            </div><!-- /col-lg-9 END SECTION MIDDLE -->
+            
+            
+            
+
+            <!--main content end-->
+          </section>
+
+          <script src="js/bootstrap.min.js"></script>
+          <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+          <script src="js/jquery.min.js"></script>
+          <script src="js/disp_events.js"></script>
+        </body>
+        </html>

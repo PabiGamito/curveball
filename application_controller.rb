@@ -33,9 +33,12 @@ class ApplicationController < Sinatra::Base
                              :secret => 'muh_secret'
   
 # 	add something to make it secret
-		
+	
+  
+  
 	get '/' do
     puts session[:user]
+    
     erb :home
   end
 	
@@ -82,12 +85,10 @@ class ApplicationController < Sinatra::Base
 	
 	post '/signin' do 
 		@username=params[:username]
-		if User.exists?(:username => @username) #Make it so you can not create blanc user.
+		if User.exists?(:username => @username) #Make it so you can not create blank user.
 			@user = User.find_by(:username => @username)
       session[:user]=@user.id
-			puts "-------!!!!!!!!!!!!!---------"
-			puts "session[:user]=#{session[:user]}"
-		elsif @username.count>=3
+		else
 			@user=User.new(:username => @username)
 			@user.save
       session[:user]=@user.id
@@ -101,13 +102,14 @@ class ApplicationController < Sinatra::Base
 	end
 
 get '/my_events' do
-  @my_events = Event.find_by_all(:host_id => session[:user])
+  Event.connection
+	@my_events = Event.where(:host_id => session[:user])
   erb :my_events 
 end
 
 # REDIRECT ANY UNKOWN LINK TO HOME
   get '*' do
-    erb :home
+		"ERROR PAGE NOT FOUND"
   end
 
 end

@@ -78,10 +78,10 @@
               <%if session[:user]!=nil%>
               	  <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
                 
-                <h5 class="centered">User</h5>
+                <h5 class="centered"><% @user = User.find(session[:user])%> <%=@user.username%></h5>
               	  	
                   <li class="mt">
-                      <a href="index.html">
+                      <a href="/my_events">
                           <i class="fa fa-calendar-o"></i>
                           <span>My Events</span>
                       </a>
