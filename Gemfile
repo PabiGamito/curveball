@@ -11,6 +11,7 @@ gem "haml"
 gem 'gravtastic'
 gem 'open-weather'
 gem 'pg'
+gem 'thin'
 # gem 'font-awesome-less'
 
 
