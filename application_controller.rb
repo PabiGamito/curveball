@@ -19,7 +19,7 @@ end
 configure :production do
 
 ActiveRecord::Base.establish_connection(
-  :adapter => 'pg',
+  :adapter => 'postgresql',
 	:database =>  'DATABASE_URL'
 )
 	
