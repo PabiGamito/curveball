@@ -85,10 +85,10 @@ class ApplicationController < Sinatra::Base
 	
 	post '/signin' do 
 		@username=params[:username]
-		if User.exists?(:username => @username) #Make it so you can not create blank user.
+		if User.exists?(:username => @username)#Make it so you can not create blank user.
 			@user = User.find_by(:username => @username)
       session[:user]=@user.id
-		else
+		elsif @username!=""
 			@user=User.new(:username => @username)
 			@user.save
       session[:user]=@user.id
