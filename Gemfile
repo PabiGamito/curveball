@@ -10,6 +10,7 @@ gem "rack-ssl-enforcer"
 gem "haml"
 gem 'gravtastic'
 gem 'open-weather'
+gem 'pg'
 # gem 'font-awesome-less'
 
 

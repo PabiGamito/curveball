@@ -7,10 +7,23 @@ require_relative './models/invitation'
 require_relative './models/user'
 require_relative './models/userevent'
 
+configure :development do
+
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
   :database =>  './db/sinatra_application.sqlite3.db'
 )
+	
+end
+
+configure :production do
+
+ActiveRecord::Base.establish_connection(
+  :adapter => 'pg',
+	:database =>  'DATABASE_URL'
+)
+	
+end
 
 # Run "shotgun -o 0.0.0.0 -p 3000" to start server on port 3000
 
