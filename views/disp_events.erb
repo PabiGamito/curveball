@@ -164,8 +164,8 @@
                     <div class="event">
                       <%@host=User.find(event.host_id)%><br>
                       <a href="/event/<%=event.id%>"><b><%=event.name%></b></a><br>
-                      <div class="event-location"> <%=event.latitude%>, <%=event.longitude%></div>
-                      <br>
+                      <div class="event-location"> <%=event.latitude%> <%=event.longitude%></div>
+                      
                       <!-- Displays the date in readable format-->
                       <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
                       Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
