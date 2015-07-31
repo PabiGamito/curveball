@@ -1,172 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 
-    <title>Curveball</title>
+  <title>Curveball</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
-    <link href="css/home.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom styles for this template -->
+  <link href="css/home.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+      <![endif]-->
+    </head>
 
-  <body>
+    <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
-  <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
-  <div class="container">
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Curveball</a>
-    </div>
-<!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
-      <li><a href="/events"> New Event</a></li>
-  
-      <%if session[:user]!=nil%>
-      <li class="dropdown">
-<!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
-            <ul class="dropdown-menu">
-              <li><a href="#">Use .each</a></li>
-              <li class="divider"></li>
-              <li><a href="#">For</a></li>
-              <li class="divider"></li>
-              <li><a href="#">This</a></li>
-              <li class="divider"></li>
+      <!-- Navigation -->
+      <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+        <!-- Container makes the navbar extend across the whole screen, removing the default curved sides -->
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Curveball</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
             </ul>
-          </li>
-      <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
-      <%end%>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
+              <%if session[:user]!=nil%>
+              <li><a href="/events"><i class="fa fa-plus"></i> New Event</a></li>
+              <li class="dropdown">
+                <!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
+                <ul class="dropdown-menu">
+                  <li><a href="#">Use .each</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">For</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">This</a></li>
+                  <li class="divider"></li>
+                </ul>
+              </li>
+              <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+              <%else%>
+              <li><a href="/signin"><i class="fa fa-sign-in"></i> Sign In</a></li>
+              <%end%>
 <!--           <li><a href="#">Login</a></li>
-          <li><a href="#">Sign Up</a></li> -->
-    </ul>
-  </div><!-- /.navbar-collapse -->
-  </div><!-- container-collapse -->
+  <li><a href="#">Sign Up</a></li> -->
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- container-collapse -->
 </nav>
-      
+
       <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              <%if session[:user]!=nil%>
-              	  <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">User</h5>
-              	  	
-                <li class="mt">
-                      <a href="/my_events">
-                          <i class="fa fa-calendar-o"></i>
-                          <span>My Events</span>
-                      </a>
-                  </li>
-                  <li class="mt">
-                      <a href="index.html">
-                          <i class="fa fa-users"></i>
-                          <span>Friends</span>
-                      </a>
-                  </li>
+        <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+            
+            <%if session[:user]!=nil%>
+            <p class="centered"><a href="/user/#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+            <h5 class="centered">User</h5>
+            
+            <li class="mt">
+              <a href="/my_events">
+                <i class="fa fa-calendar-o"></i>
+                <span>My Events</span>
+              </a>
+            </li>
+            <li class="mt">
+              <a href="index.html">
+                <i class="fa fa-users"></i>
+                <span>Friends</span>
+              </a>
+            </li>
 
-              <%else%>
-                <p class="center">Login or Sign up to Access<br> all Features</p>
-              <%end%>
+            <%else%>
+            <p class="center">Login or Sign up to Access<br> all Features</p>
+            <%end%>
 
-                  <li class="mt">
-<!--                       <a href="index.html"> -->
-<!--                           <i class="fa fa-search"></i> -->
-<!--                           <span>Browse Events</span> -->
-                      </a>
-                  </li>
+            <li class="mt">
+              <!--                       <a href="index.html"> -->
+              <!--                           <i class="fa fa-search"></i> -->
+              <!--                           <span>Browse Events</span> -->
+            </a>
+          </li>
 
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">
-              <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  
-                  	<div class="row mtbox">
-                    <%if session[:user]==nil%>
-                    <h3 class="center">To Access all Features Please</h3>
-                      <span href="#" class="button" id="toggle-login">Log in</span>
-                        <div id="login">
-                          <div id="triangle"></div>
-                          <h1>Log in</h1>
-                          <form action="/signin" method="post">
-                            <input type="text" placeholder="Username" name="username"/>
-<!--                             <input type="password" placeholder="Password" name="password"/> -->
-                            <input type="submit" value="Log in" />
-                          </form>
-                        </div>
-                        
-                    <%else%>
+        <section class="wrapper">
+          <div class="row">
+            <div class="col-lg-9 main-chart">
+              
+             <div class="row mtbox">
+              <%if session[:user]==nil%>
+              <h3 class="center">To Access all Features Please</h3>
+              <span href="#" class="button" id="toggle-login">Log in</span>
+              <div id="login">
+                <div id="triangle"></div>
+                <h1>Log in</h1>
+                <form action="/signin" method="post">
+                  <input type="text" placeholder="Username" name="username"/>
+                  <!--                             <input type="password" placeholder="Password" name="password"/> -->
+                  <input type="submit" value="Log in" />
+                </form>
+              </div>
+              
+              <%else%>
                   		<!-- <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<i class="fa fa-inbox fa-4x"></i>
                   <h3>Inbox</h3>
                   			</div>
 					  			<p>You have # invitations.</p>
-                  		</div> -->
+                </div> -->
+                <div class="col-md-2 col-sm-2 box0">
+                </div>
+                <div class="col-md-2 col-sm-2 box0">
+                </div>
 
-                  		<div class="col-md-2 col-sm-2 box0">
-                        <a href = '/disp_events'>
-                  			<div class="box1">
-					  			<i class="fa fa-calendar-o fa-4x"></i>
-					  			<h3>Events</h3>
-                  			</div>
-					  			<p>You are part of event(s).</p>
-                        </a>
-                  		</div>
+                <div class="col-md-2 col-sm-2 box0">
+                  <a href = '/disp_events'>
+                   <div class="box1">
+                    <i class="fa fa-calendar-o fa-4x"></i>
+                    <h3>Events</h3>
+                  </div>
+                  <p>You are part of event(s).</p>
+                </a>
+              </div>
 
-                  		<div class="col-md-2 col-sm-2 box0">
-                         <a href = '/people'>
-                  			<div class="box1">
-					  			<i class="fa fa-users fa-4x"></i>
-					  			<h3>Users</h3>
-                  			</div>
-					  			<p>Find new friends close to you.</p>
-                        </a>
-                  		</div>
+              <div class="col-md-2 col-sm-2 box0">
+               <a href = '/people'>
+                 <div class="box1">
+                  <i class="fa fa-users fa-4x"></i>
+                  <h3>Users</h3>
+                </div>
+                <p>Find new friends close to you.</p>
+              </a>
+            </div>
 
-                      <%end%>
-                  	
-                  	</div><!-- /row mt -->	
-                  
-                      <!-- EVENTS -->
-                      <div class="row mt">
-                      <!-- Weather Panel -->
+            <%end%>
+            
+          </div><!-- /row mt -->	
+          
+          <!-- EVENTS -->
+          <div class="row mt">
+            <!-- Weather Panel -->
                       	<!-- <div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn donut-chart">
                       			<div class="white-header">
@@ -179,140 +184,140 @@
 	                      		</div>
 								<canvas id="serverstatus01" height="120" width="120"></canvas>
 
-	                      	</div> --><!--/grey-panel -->
-                      	<!-- </div> --><!-- /col-md-4-->
-                      	
-          </div><!-- /row -->
-        </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
+              </div> --><!--/grey-panel -->
+              <!-- </div> --><!-- /col-md-4-->
+              
+            </div><!-- /row -->
+          </div><!-- /col-lg-9 END SECTION MIDDLE -->
+          
+          
       <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->                  
-                  
-                  <div class="col-lg-3 ds">
+      
+      <div class="col-lg-3 ds">
 
 
 
-              <h3>REMEMBER</h3>
-                  <!-- Open Scrollable Container -->
-                    <div style="overflow:scroll; height:200px;">                   
-                      <!-- Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>In 5 hours</muted><br/>
-                             <a href="#">The First Event</a> starts.<br/>
-                          </p>
-                        </div>
-                      </div>
-                  
+        <h3>REMEMBER</h3>
+        <!-- Open Scrollable Container -->
+        <div style="overflow:scroll; height:200px;">                   
+          <!-- Action -->
+          <div class="desc">
+            <div class="thumb">
+              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+            </div>
+            <div class="details">
+              <p><muted>In 5 hours</muted><br/>
+               <a href="#">The First Event</a> starts.<br/>
+             </p>
+           </div>
+         </div>
+         
 
-                    <!-- Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>Tomorrow</muted><br/>
-                             This will use <a href="#">.each</a> methods.<br/>
-                          </p>
-                        </div>
-                      </div>
-                    </div> <!-- Close scrollable div -->
+         <!-- Action -->
+         <div class="desc">
+          <div class="thumb">
+            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+          </div>
+          <div class="details">
+            <p><muted>Tomorrow</muted><br/>
+             This will use <a href="#">.each</a> methods.<br/>
+           </p>
+         </div>
+       </div>
+     </div> <!-- Close scrollable div -->
 
 
 
-						<h3>FEATURED EVENTS</h3>
-                  <!-- Open Scrollable Container -->
-                    <div style="overflow:scroll; height:290px;">                   
-                      <!-- First Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>In a week at <a href="#">New York</a></muted><br/>
-                      		   <a href="#">Bigest Party every</a> will start.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Second Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
-                             <a href="#">Bigest Party every</a> will start.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
-                             <a href="#">Bigest Party every</a> will start.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fourth Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
-                             <a href="#">Bigest Party every</a> will start.<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fifth Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>In a week at <a href="#">New York</a></muted><br/>
-                             <a href="#">Bigest Party every</a> will start.<br/>
-                          </p>
-                        </div>
-                      </div>
-                  
-                    </div> <!-- Close scrollable div -->
-                      
-                  </div><!-- /col-lg-3 -->
-              </div><!--/row -->
-          </section>
-      </section>
+     <h3>FEATURED EVENTS</h3>
+     <!-- Open Scrollable Container -->
+     <div style="overflow:scroll; height:290px;">                   
+      <!-- First Action -->
+      <div class="desc">
+       <div class="thumb">
+        <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+      </div>
+      <div class="details">
+        <p><muted>In a week at <a href="#">New York</a></muted><br/>
+         <a href="#">Bigest Party every</a> will start.<br/>
+       </p>
+     </div>
+   </div>
+   <!-- Second Action -->
+   <div class="desc">
+    <div class="thumb">
+      <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+    </div>
+    <div class="details">
+      <p><muted>In a week at <a href="#">New York</a></muted><br/>
+       <a href="#">Bigest Party every</a> will start.<br/>
+     </p>
+   </div>
+ </div>
+ <!-- Third Action -->
+ <div class="desc">
+  <div class="thumb">
+    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+  </div>
+  <div class="details">
+    <p><muted>In a week at <a href="#">New York</a></muted><br/>
+     <a href="#">Bigest Party every</a> will start.<br/>
+   </p>
+ </div>
+</div>
+<!-- Fourth Action -->
+<div class="desc">
+  <div class="thumb">
+    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+  </div>
+  <div class="details">
+    <p><muted>In a week at <a href="#">New York</a></muted><br/>
+     <a href="#">Bigest Party every</a> will start.<br/>
+   </p>
+ </div>
+</div>
+<!-- Fifth Action -->
+<div class="desc">
+  <div class="thumb">
+    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+  </div>
+  <div class="details">
+    <p><muted>In a week at <a href="#">New York</a></muted><br/>
+     <a href="#">Bigest Party every</a> will start.<br/>
+   </p>
+ </div>
+</div>
 
-      <!--main content end-->
-  </section>
+</div> <!-- Close scrollable div -->
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+</div><!-- /col-lg-3 -->
+</div><!--/row -->
+</section>
+</section>
+
+<!--main content end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- LOGIN & SIGN UP BUTTON SCRIPT -->
-    <script>
-      $('#login').toggle();
-      $('#signup').toggle();
+<script>
+  $('#login').toggle();
+  $('#signup').toggle();
 
-      $('#toggle-login').click(function(){
-        $('#login').toggle();
-      });
+  $('#toggle-login').click(function(){
+    $('#login').toggle();
+  });
 
 
-      $('#toggle-signup').click(function(){
-        $('#signup').toggle();
-      });
-    </script>
-  
+  $('#toggle-signup').click(function(){
+    $('#signup').toggle();
+  });
+</script>
 
-  </body>
+
+</body>
 </html>

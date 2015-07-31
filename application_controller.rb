@@ -34,19 +34,23 @@ class ApplicationController < Sinatra::Base
 	end
   
   get '/events' do 
-    @all_activites = Activity.all
+    @all_activities = Activity.all
     erb :events
   end 
 	
-  post '/events' do
-		if session[:user]!=nil
+  post '/new_event' do
+    @date= params[:datetime]
+    @time=Time.parse(@date)
+    # Makes sure user is logged in and time is in the future
+		if session[:user]!=nil && @time.future?
 			
-			@event = Event.new({:name => params[:name], :public => params[:public], :host_id => session[:user], :activity_id => params[:activity], :public => params[:public], :latitude => params[:latitude], :longitude => parms[:longitude]})
+			@event = Event.new({:name => params[:name], :public => params[:public], :host_id => session[:user], :activity_id => params[:activity], :public => params[:public], :latitude => params[:latitude], :longitude => params[:longitude], :event_date => params[:datetime]})
 			@event.save
 			@all_events = Event.all
 			@all_activities = Activity.all
+      redirect '/disp_events'
 		end
-		erb :disp_events
+		redirect '/events'
 	end
   
 	get "/people" do
@@ -88,6 +92,11 @@ get '/my_events' do
   @my_events = Event.find_by_all(:host_id => session[:user])
   erb :my_events 
 end
+
+# REDIRECT ANY UNKOWN LINK TO HOME
+  get '*' do
+    erb :home
+  end
 
 end
   

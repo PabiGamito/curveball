@@ -41,9 +41,9 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/events"><i class="fa fa-calendar-o"></i> Events</a></li>
-  
-      <%if session[:user]!=nil%>
+    <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
+    <%if session[:user]!=nil%>
+      <li><a href="/events"><i class="fa fa-plus"></i> New Event</a></li>
       <li class="dropdown">
 <!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
             <ul class="dropdown-menu">
@@ -56,6 +56,8 @@
             </ul>
           </li>
       <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+      <%else%>
+        <li><a href="/signin"><i class="fa fa-sign-in"></i> Sign In</a></li>
       <%end%>
 <!--           <li><a href="#">Login</a></li>
           <li><a href="#">Sign Up</a></li> -->
@@ -116,28 +118,64 @@
           <section class="wrapper">
 						
 
+<!-- TODO: Find a way to do this more efficiently -->
 
 <!-- Displays Events -->
-            <h1> Events near you: </h1>
+    <h1> Events near you:</h1>
       <div class="notification-box">
 				<div class="list">
 <!-- 					TODO: Sort by soonest to latest & location -->
 					<%@all_events.each do |event|%>
-				   
+          <%@date= event.event_date.to_s%>
+          <%@time=Time.parse(@date)%>
+          <!-- Checks that event has not yet passed -->
+          <%if @time.future?%>
+				   <hr>
           	<img src="" class="avatar">
           	<div class="content">
 						<% #if event.public==1 %>
 							<div class="event">
 							<%@host=User.find(event.host_id)%><br>
-								<%=event.name%><br>
+								<a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
 								<div class="event-location"> <%=event.latitude%>, <%=event.longitude%><div>
                   <br>
-								<%=event.event_date%><br>
-								Hosted by <%=@host.username%><br>  
-						<%#end%>
+                  <!-- Displays the date in readable format-->
+                <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
+								Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
+                    
+						<%end%>
 					<%end%>
 					</div>
       </div>
+
+        <h1> Passed Events:</h1>
+      <div class="notification-box">
+        <div class="list">
+<!--          TODO: Sort by soonest to latest & location -->
+          <%@all_events.each do |event|%>
+          <%@date= event.event_date.to_s%>
+          <%@time=Time.parse(@date)%>
+          <!-- Checks that event has not yet passed -->
+          <%if @time.past?%>
+           <hr>
+            <img src="" class="avatar">
+            <div class="content">
+            <% #if event.public==1 %>
+              <div class="event">
+              <%@host=User.find(event.host_id)%><br>
+                <a href="/event/<%=event.name%>"><b><%=event.name%></b></a><br>
+                <div class="event-location"> <%=event.latitude%>, <%=event.longitude%><div>
+                  <br>
+                  <!-- Displays the date in readable format-->
+                <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
+                Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
+                    
+            <%end%>
+          <%end%>
+          </div>
+      </div>
+
+
     </div>
 				
 				

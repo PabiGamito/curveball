@@ -42,9 +42,8 @@
     <ul class="nav navbar-nav navbar-right">
     <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="/disp_events"><i class="fa fa-calendar-o"></i> Events</a></li>
-      <li><a href="/events"> New Event </a></li>
-  
-      <%if session[:user]!=nil%>
+    <%if session[:user]!=nil%>
+      <li><a href="/events"><i class="fa fa-plus"></i> New Event</a></li>
       <li class="dropdown">
 <!--             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> Notifications <b class='caret' id='#menu-caret'></b></a> -->
             <ul class="dropdown-menu">
@@ -57,6 +56,8 @@
             </ul>
           </li>
       <li><a href="/signout"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+      <%else%>
+        <li><a href="/signin"><i class="fa fa-sign-in"></i> Sign In</a></li>
       <%end%>
 <!--           <li><a href="#">Login</a></li>
           <li><a href="#">Sign Up</a></li> -->
