@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Curveball</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/home.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+	
+		<h1><%=@event.name%></h1>
+		<%@date= @event.event_date.to_s%>
+    <%@time=Time.parse(@date)%>
+    <!-- Checks that event has not yet passed -->
+    <%@host=User.find(@event.host_id)%><br>
+    <div class="event-location"> <%=@event.latitude%>, <%=@event.longitude%></div>
+                  
+<!-- Displays the date in readable format-->
+     <%=Time.parse(@date).strftime('On %A, %B %dth %Y at %k:%M%p')%><br>
+    Hosted by <a href="/user/<%=@host.username%>"><%=@host.username%></a><br>
+
+		
+		<form method="post" action="/join">
+			<button type="button">Join</button>
+		</form>
+
+		
+		<script src="js/bootstrap.min.js"></script>
+          <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+          <script src="js/jquery.min.js"></script>
+          <script src="js/disp_events.js"></script>
+		
+  </body>
+</html>
+
+
+
+
+
+
